@@ -1,0 +1,30 @@
+.labels{
+  width: 10%;
+  display: inline-block;
+  margin-right: 5%;
+  text-align: right;
+}
+.container {
+    position:relative;
+    width: 300px;
+    height: 100px;
+    border: 1px solid #ddd;
+}
+div.text-cont{
+  bottom: 10%;
+  left: 10%;
+}
+div.color-selector {
+  position: fixed;
+    bottom: 80%;
+    left: :0%;
+    width: 10%;
+}
+textarea {
+    position:relative;
+    border:none;
+    width:232px;
+    height: 95px;
+    resize: none
+    outline: none; /* add this to stop highlight on focus */
+}
