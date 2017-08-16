@@ -29,6 +29,7 @@ class ColorSelector extends React.Component{
 
   divStyle : {
     display: "inline-block",
+
   }
 
   handlerColSel(evnt){
@@ -40,10 +41,10 @@ class ColorSelector extends React.Component{
   render(){
     return(
       <div style={this.divStyle}>
-        <div className="text-cont">
+
           <Selector onClick={this.handlerColSel} />
-          <textarea>ia quam venenatis vestibulum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</textarea>
-        </div>
+          <textarea className="textarea">ia quam venenatis vestibulum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</textarea>
+
 
 
       </div>
@@ -61,15 +62,25 @@ class Selector extends React.Component {
   }
 
 
-  handlerSel(evn){
-    console.log("Handler Selector");
-  }
+
+
 
 
   render(){
+
+
+
     return(
-      <div>
-        <input type="checkbox" checked="checked" onClick={this.props.onClick}></input>
+      <div className="div-color-sel" >
+          <div>
+            <input id="red" className="color-sel" type="radio" name="color-group" value="Red"  onClick={this.props.onClick}></input>
+            <label for="red">Red</label>
+          </div>
+          <div>
+            <input  id="green" className="color-sel" type="radio"  name="color-group" value="Green" onClick={this.props.onClick}></input>
+            <label for="green">Green</label>
+          </div>
+
       </div>
     );
   }
