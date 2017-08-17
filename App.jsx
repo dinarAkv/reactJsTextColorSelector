@@ -2,104 +2,111 @@ import React from 'react';
 
 
 
+
+
+const Colors = [
+  {
+    id: 1,
+    name: 'red',
+    value: 'Red'
+  },{
+    id: 2,
+    name: 'green',
+    value: 'Green'
+  },{
+    id: 3,
+    name: 'blue',
+    value: 'Blue'
+  },{
+    id: 4,
+    name: 'grey',
+    value: 'Grey'
+  }
+]
+
+
+
+
 class ColorSelector extends React.Component{
 
   constructor(props){
     super(props);
 
     this.state = {
-      colorName: '',
+      colorVal: '',
     };
 
     this.handlerColSel = this.handlerColSel.bind(this);
   }
 
-  handlerColSel(e){
-    console.log("Color: " + e.target.value);
+  handlerColSel(value){
 
-    this.setState({
-      colorName: e.target.value
-    });
+      this.setState({
+        colorVal: value,
+      });
+
   }
 
   render(){
+
+    var textColorStyle = {
+      color: this.state.colorVal,
+    };
+
     return(
       <div>
 
-          <Selector onClick={this.handlerColSel} />
-          <ColoredText color={this.state.colorName} />
+          <Selector onClickedradioBtnColor = {this.handlerColSel} />
+          <textarea style={textColorStyle}></textarea>
 
       </div>
     );
   }
 
 }
-
-
-
-
-class ColoredText extends React.Component {
-    constructor(props) {
-      super(props);
-
-    }
-
-    render(){
-
-      var textNewStyle = {
-        color: this.props.color,
-      };
-
-      return(
-        <div>
-          <textarea style={textNewStyle}>This is textarea </textarea>
-        </div>
-      );
-    }
-
-}
-
 
 
 class Selector extends React.Component {
   constructor(props) {
     super(props);
 
-    this.textLabels = {
-        red: "Red",
-        green: "Green",
-        blue: "Blue"
-    };
+    this.onClickProp = props.onClick;
 
-    this.colorsVal = {
-      red: "red",
-      green: "green",
-      blue: "blue",
-    };
+    this.radioBtnClickHandler = this.radioBtnClickHandler.bind(this);
   }
 
+
+
+  radioBtnClickHandler(e)
+  {
+    this.props.onClickedradioBtnColor(e.target.value);
+  }
 
 
   render(){
     return(
       <div>
-          <div>
-            <input id="red" className="color-sel" type="radio" name="color-group" value={this.colorsVal.red} onClick={this.props.onClick}></input>
-            <label for="red">{this.textLabels.red}</label>
-          </div>
-          <div>
-            <input  id="green" className="color-sel" type="radio"  name="color-group" value={this.colorsVal.green} onClick={this.props.onClick}></input>
-            <label for="green">{this.textLabels.green}</label>
-          </div>
-          <div>
-            <input  id="blue" className="color-sel" type="radio"  name="color-group" value={this.colorsVal.blue} onClick={this.props.onClick}></input>
-            <label for="blue">{this.textLabels.blue}</label>
-          </div>
+        <ul className="colors-list">
+
+            {
+              Colors.map(function(el){
+                return <div key={el.id}>
+                          <input  id="green" className="color-sel" type="radio"
+                            name="color-group" value={el.value} onClick={this.radioBtnClickHandler}></input>
+                          <label htmlFor="green">{el.name}</label>
+                      </div>;
+              }, this)
+            }
+
+        </ul>
+
       </div>
     );
   }
 
 }
+
+
 
 
 

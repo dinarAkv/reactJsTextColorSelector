@@ -9,3 +9,6 @@ div.div-color-sel{
   margin: auto;
   text-align: left;
 }
+ul.colors-list{
+  list-style-type: none;
+}
